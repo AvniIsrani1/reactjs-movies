@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GenreSelection from "./components/GenreSelection";
+import GenrePage from "./components/GenrePage";
 
 function App() {
   const genres = [
     { genre: "Romance", pic: "/pexels-kpaukshtite-704748.jpg" },
     { genre: "Comedy", pic: "/pexels-monica-713149.jpg" },
-    { genre: "Adventure", pic: "/pexels-sebastian-palomino-933481-1955134.jpg"},
+    {
+      genre: "Adventure",
+      pic: "/pexels-sebastian-palomino-933481-1955134.jpg",
+    },
     { genre: "Mystery", pic: "/pexels-pixabay-356079.jpg" },
     { genre: "Horror", pic: "/pexels-pedro-figueras-202443-626163.jpg" },
     { genre: "Science Fiction", pic: "/pexels-pixabay-41951.jpg" },
@@ -16,9 +20,19 @@ function App() {
   const [chosenGenre, setChosenGenre] = useState(null);
   return (
     <>
-{      !chosenGenre && <GenreSelection genres={genres} setChosenGenre={setChosenGenre}/>
-}    </>
+      {!chosenGenre && (
+        <GenreSelection genres={genres} setChosenGenre={setChosenGenre} />
+      )}
+      {chosenGenre && (
+        <GenrePage chosenGenre={chosenGenre} setChosenGenre={setChosenGenre}/>
+      )}
+
+    </>
   );
+
+
+
+
 }
 
 export default App;

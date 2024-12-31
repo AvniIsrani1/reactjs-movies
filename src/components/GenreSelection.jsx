@@ -2,6 +2,7 @@ import React from "react";
 
 function GenreSelection(props) {
   const { genres, setChosenGenre } = props;
+
   return (
     <div className="bg-custom-black min-h-screen flex justify-center items-center">
       <div className="flex flex-col items-center justify-center gap-y-20">
@@ -11,7 +12,7 @@ function GenreSelection(props) {
             return (
               <div
                 key={g.genre}
-                className="flex flex-col items-center justify-center w-[200px] h-[200px] sm:w-[150px] sm:h-[150px] md:w-[170px] md:h-[150px] lg:w-[220px] lg:h-[200px] mx-1 my-5 gap-4 group"
+                className="flex flex-col items-center justify-center w-[200px] h-[200px] mx-1 my-5 gap-4 group"
               >
                 <button
                   onClick={() => {
