@@ -11,12 +11,25 @@ function MoviesList(props) {
           movies.results.map((m) => {
             return (
               <div key={m.id} className="w-[200px] h-[200px] m-2">
-                <button className="justify-center w-full h-full object-cover rounded-xl outline hover:scale-150 transition-all duration-300">
+                <button className="justify-center w-full h-full object-cover rounded-xl outline hover:scale-150 transition-all duration-300 group">
                   <img
                     src={`https://image.tmdb.org/t/p/w200/${m.poster_path}`}
                     className="rounded-xl w-[200px] h-[200px]"
                   ></img>
-                </button>
+                  <div className="invisible group-hover:visible absolute left-0 bottom-0 h-1/3 w-full bg-custom-black rounded-b-xl text-custom-grey">
+                  <div className="flex flex-col">
+                    <span className="text-base font-bold truncate pl-2 pr-2">{m.original_title}</span>
+                  <div className="flex items-center justify-between m-2">
+                    <span className="text-sm outline pl-2 pr-2">{m.original_language.toUpperCase()}</span>
+                    <div className="flex flex-col text-xs">
+                    <span>{m.release_date}</span>
+                    <span>Rating: {m.vote_average.toFixed(2)}</span>
+                    </div>
+                  </div>
+                  </div>
+
+                  </div>
+          </button>
               </div>
             );
           })}

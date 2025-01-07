@@ -7,7 +7,7 @@ function GenrePage(props) {
   const { chosenGenre, setChosenGenre, api_key, genID } = props;
   const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [curPage, setCurPage] = useState(497);
+  const [curPage, setCurPage] = useState(1);
   
 
   useEffect(() => {
