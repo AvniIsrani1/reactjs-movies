@@ -52,7 +52,7 @@ function GenrePage(props) {
         </button>
       </header>
       {!loading && (
-        <MoviesList loading={loading} setLoading={setLoading} movies={movies} setMovies={setMovies} curPage={curPage} setCurPage={setCurPage} />
+        <MoviesList loading={loading} setLoading={setLoading} movies={movies} setMovies={setMovies} curPage={curPage} setCurPage={setCurPage} api_key={api_key}/>
       )}
       {loading && (
         <LoadingMovies loading={loading} setLoading={setLoading} movies={movies} />
