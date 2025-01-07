@@ -4,19 +4,22 @@ import MoviesList from "./MoviesList";
 import LoadingMovies from "./LoadingMovies";
 
 function GenrePage(props) {
-  const { chosenGenre, setChosenGenre } = props;
+  const { chosenGenre, setChosenGenre, api_key, genID } = props;
   const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(true);
-  const api_key = import.meta.env.VITE_TMDB_API_KEY;
+  const [curPage, setCurPage] = useState(497);
+  
 
   useEffect(() => {
     async function fetchAPIData() {
+      console.log("fetching data for page "+ curPage);
       // const url=`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_genres=28`;
       const url =
         "https://api.themoviedb.org/3/discover/movie" +
         `?api_key=${api_key}` +
-        "&with_genres=28"
-        +`page=1`;
+        "&with_genres="
+        +`${genID.genres.find((g)=>g.name===chosenGenre).id}`
+        +`&page=${curPage}`;
       try {
         const response = await fetch(url);
         const data = await response.json();
@@ -25,12 +28,16 @@ function GenrePage(props) {
       } catch (err) {
         console.log("not possible");
         console.log(err.message);
+        setLoading(true);
       }
     }
     fetchAPIData();
-  }, [api_key]);
+  }, [chosenGenre, curPage]);
+  
+
 
   console.log(chosenGenre);
+  console.log(genID.genres.find((g)=>g.name===chosenGenre).id);
 
   return (
     <div className="bg-custom-black min-h-screen ">
@@ -39,13 +46,13 @@ function GenrePage(props) {
           onClick={() => {
             setChosenGenre(null);
           }}
-          className="text-white"
+          className="text-white text-4xl mt-4 mx-3"
         >
-          {chosenGenre}
+          {chosenGenre} 
         </button>
       </header>
       {!loading && (
-        <MoviesList loading={loading} setLoading={setLoading} movies={movies}/>
+        <MoviesList loading={loading} setLoading={setLoading} movies={movies} setMovies={setMovies} curPage={curPage} setCurPage={setCurPage} />
       )}
       {loading && (
         <LoadingMovies loading={loading} setLoading={setLoading} movies={movies} />
